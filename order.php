@@ -72,35 +72,28 @@ for($s=0; $s<count($whole); $s++){
 ?>
 <html>
 <head>
-<!-- <link rel="stylesheet" href="./css/order.css?v=<?php echo time(); ?>"/> -->
+<link rel="stylesheet" href="./css/order.css?v=<?php echo time(); ?>"/>
 </head>
 <body>
 <div class="above">
  
 
      </div>
-<div class="card"    style=" 
-background: white;
-    padding: 25px;
-    border-radius: 6px;
-    width: 90%;">
-    <section style=" display:flex; justify-content:space-between;">
+<div class="card">
+    <section>
   <h2> View orders</h2>
-  <select class="pages" style=" width:100px;
-     height:50px;
-     border-radius:4px 4px 4px 4px;
-     outline:none;">
+  <select class="pages" >
     <option>Page</option>
      <option>Make an order</option>
      <option>Login</option>
    </select>
    </section>
-    <table style="width:90%;">
+    <table >
           <thead>
-              <tr style="text-align:left;">
+              <tr>
                 <th>lineId</th>
                 <th>Products</th>
-                <th>DellyMan order id</th>
+                <th>Dellyman order id</th>
                 <th>OrderStatus</th>
                 <!-- <th> Date</th> -->
               </tr>
@@ -128,9 +121,9 @@ async function delly(){
         let good = JSON.parse(product);
         //productName, amount
         table.innerHTML += `
-              <tr style="border-bottom:2px solid black">
+              <tr class="border_bottom">
               <td>${line_id}</td>
-              <td><p style="font-size:13px; margin:2px;">${good.map(item=>item.productName+' x'+item.amount+'Qty'+'<br/>')}</p></td>
+              <td><p >${good.map(item=>item.productName+' x'+item.amount+'Qty'+'<br/>')}</p></td>
               <td>${Reference}</td>
               <td>${OrderStatus}</td>
               </tr>

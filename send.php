@@ -6,6 +6,7 @@
  }
 
 $list = array('word'=>$_REQUEST['word'], 'product_code'=>$_REQUEST['product_code'], 'carrier'=>$_REQUEST['carrier'], 'product_name'=>$_REQUEST['product_name'] );
+// echo json_encode($list);
 $line_id = $_REQUEST['line_id'];
 $product_code = $_REQUEST['product_code'];
 $carrier = $_REQUEST['carrier'];

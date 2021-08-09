@@ -11,11 +11,11 @@ include("./apicode/Login.php");
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <link rel="stylesheet" href="./css/style2.css?v=<?php echo time(); ?>"/>
-    <title>dellyman</title>
+    <title>Dellyman</title>
   </head>
   <body>
   <nav>
-  <h2>dellyman</h2>
+  <h2>Dellyman</h2>
   </nav>
 <section class="ayo">
 <aside id="err"></aside>

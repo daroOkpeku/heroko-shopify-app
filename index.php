@@ -88,9 +88,7 @@ if(!isset($_REQUEST['auth']) && !isset($_REQUEST['ID'])){
   <!doctype html>
 <html lang="en">
   <head>
-   <style type="text/css">
-
-   </style>
+   <script src="./js/jquery-3.5.1.min.js"></script>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
   </head>
   <body>
@@ -190,13 +188,13 @@ const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
  let customerId = params.ID;
 let customerAuth = params.auth;
-console.log(customerId+' '+customerAuth)
+
 let orders = ["Select Order"];
  let list = ["Select Carrier"];
  let summer = [];
  let pname = [];
    let id   = [];
- 
+ let sumbit_array = [];
 order.addEventListener('click', function(e){
   
      window.location.href='order.php?auth='+customerAuth+'&id='+customerId;
@@ -250,7 +248,7 @@ async function delly() {
             </button></p>
         <p> <input type="number" id="${product_id}" class="qty"  data-number="${product}"   placeholder="Quantity" />
         <p class="err"></p>
-         <button type="button" class="second" >Update</button></p>
+         <button type="button" class="second"  name="${product_id}">Update</button></p>
         </div>
             </td>
              <td>${product_id}</td>
@@ -266,7 +264,8 @@ async function delly() {
           table.innerHTML = jamb.join(' ');
           let buttons = [...document.querySelectorAll(".magic")]
         let yoyo = [...document.querySelectorAll(".goat")];
-         console.log(yoyo)
+        
+        
          yoyo.forEach(one=>{
          let watch = one.querySelector(".switch");
          let input = one.querySelector(".qty");
@@ -274,35 +273,42 @@ async function delly() {
          let check = one.querySelector(".second");
          
          input.style.display ="none";
-          // within.addEventListener("click", function(e){
-          //    if (e.target.innerText == "Yes") {
-          //      summer.push(input.value);
-          //    }
-
-          // })
+       
           steve(err);
-                  // check.addEventListener("click", e=>{
-                  //       summer.push(input.value)
-                  //          })
+          check.setAttribute('disabled', true);
+          check.style.backgroundColor  =`#9d214262`;
           input.style.display ="none";
         watch.addEventListener("click", function(e){
            if (!watch.classList.contains("slide")) {
+             check.removeAttribute('disabled')
+             check.style.backgroundColor  =`#9D2143`; 
                     watch.classList.add("slide")
                     input.style.display="block";
                     if(watch.classList.contains("slide") == true){
-                        
-                           check.addEventListener("click", e=>{
-                        summer.push(input.value)
+                     
+                        check.addEventListener("click", e=>{
+                         let name =  input.getAttribute("id");
+                         var result_array = summer.filter((item) => item == name);
+                         if(result_array.length == 0) {
+                           summer.push(name);
+                           
+                         }
                            })
-                      // console.log(input.value);
+                            
+                         
+                          
                           //summer.push(input.value);
-                          pname.push(input.getAttribute("data-number"));
-                          id.push(input.getAttribute("id"));
+                         
+                         
       
                     }
                 } else {
                     watch.classList.remove("slide")
                     input.style.display="none";
+                    input.value=" ";
+                    err.innerText = " "
+                    check.setAttribute('disabled', true);
+                   check.style.backgroundColor  =`#9d214262`;
                 } 
          })
 
@@ -316,19 +322,19 @@ async function delly() {
 
                   let come = localStorage.getItem('filters')?JSON.parse(localStorage.getItem('filters')):[];
                 let purchasedQuantity = come.map(item => item.quantity)
-                console.log(purchasedQuantity)
+              
                 function func() {
                     var cole = [];
                     for (var i = 0; i <= con.length- 1; i++) {
                         cole.push(con[i].value);
                           
                     }
-                    console.log(cole)
+                
 
                      
                     if (cole > purchasedQuantity) {
                         on.setAttribute('disabled', true)
-                        console.log(true)
+                       
                         err.innerText = `quantity(es) ${input.value} is greater than order `
                         err.style.color = `red`;
                          submit.setAttribute('disabled', true);
@@ -336,7 +342,7 @@ async function delly() {
                     }
                     else if (cole <= purchasedQuantity) {
                         on.removeAttribute('disabled')
-                        console.log(false)
+                      
                         err.innerText = `${input.value} quantity(es) will be shipped `
                         err.style.color = `green`;
                     }
@@ -403,28 +409,52 @@ on.addEventListener("change", function(e){
        submit.removeAttribute('disabled')
         submit.style.backgroundColor  =`#9D2143`; 
      }
-      console.log(select)
+     
      })
-     submit.addEventListener("click", function(e){
-    e.preventDefault()
-    overlay.classList.add('hide-overlay')
-  })
+  //    submit.addEventListener("click", function(e){
+  //   e.preventDefault()
+  //   overlay.classList.add('hide-overlay')
+  // })
 
 listen()
-
+submit.addEventListener('click', e=>{
+      e.preventDefault()
+    overlay.classList.add('hide-overlay')
+  let ear = localStorage.getItem("filters")?JSON.parse(localStorage.getItem("filters")):[];
+          summer.map(item=>{
+            let soon =  document.getElementById(""+item).value
+            if(soon){ 
+              id.push(item);  
+              //one.product_id == item
+             let king = ear.filter(one=>{
+               if(one.product_id == item){
+               
+                 pname.push(one.product);
+               }
+             })
+            //  console.log(king)
+               
+              
+            sumbit_array.push(soon);
+            }
+        })  
+        
+       
+        })
+        console.log(pname)
 
 within.addEventListener('click', (e) => {
   let team = [...form.querySelectorAll(".qty")]
 
     if (e.target.innerText == "Yes") {
         window.scrollTo(0, 0);
-        console.log(summer)  
+    
         console.log(e.target.innerText)                 
             let formData = new FormData();
 
             formData.append(`customerId`, customerId);
             formData.append(`customerAuth`, customerAuth);
-            formData.append(`word`, summer);
+            formData.append(`word`, sumbit_array);
             formData.append(`product_code`, id);
             formData.append(`carrier`, on.value);
             formData.append(`product_name`, pname)
@@ -440,7 +470,7 @@ within.addEventListener('click', (e) => {
 
             }).then(res => {
                 console.log(res)
-                
+                   
                       let {ResponseCode, ResponseMessage, Reference} = res;
                        if(ResponseCode == '101' ||  ResponseCode =='400'){
                            show.innerHTML = `${ResponseMessage}`;
@@ -488,6 +518,8 @@ within.addEventListener('click', (e) => {
     }
 
 })
+
+
 
 pages.addEventListener("change", function(event){
     let select = event.target.options[event.target.selectedIndex].innerText;
