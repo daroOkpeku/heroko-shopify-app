@@ -111,6 +111,7 @@ const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
  let customerId = params.id;
 let customerAuth = params.auth;
+
 let output = "";
 async function delly(){
     let data = await fetch('./apicode/delly.php');

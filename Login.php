@@ -1,13 +1,18 @@
 <?php
+$conn = mysqli_connect('localhost', 'root', '', 'test');
+if(mysqli_errno($conn)){
+    echo "failed the connect the DB".mysqli_errno($conn);
+    mysqli_close($conn);
+}
 $output = " ";
-include("connect.php");
+// include("connect.php");
 function clean($string){
   $string = stripslashes($string);
   $string  = strip_tags($string);
   $string = trim($string);
   return $string;
 }
-if (isset($_POST['btn'])) {
+// if (isset($_POST['btn'])) {
     $email = $_REQUEST['email'];
     $pass = $_REQUEST['password'];
 
@@ -51,12 +56,14 @@ if (isset($_POST['btn'])) {
       $output .=  $joker['ResponseMessage'];
     }else{
      list("ResponseMessage" => $ResponseMessage,'Email'=>$Email, 'Name'=>$Name, 'PhoneNumber'=>$PhoneNumber, 'CustomerAuth'=>$CustomerAuth, 'CustomerID'=>$CustomerID) = $joker;
-      // $sql = "REPLACE INTO delly(Email, Name, PhoneNumber, CustomerAuth, upadta_time ) values('$Email', '$Name', '$PhoneNumber', '$CustomerAuth', NOW() )";
+      // $sql = "REPLACE INTO delly(Email, Name, PhoneNumber, CustomerAuth, CustomerID, upadta_time ) values('$Email', '$Name', '$PhoneNumber', '$CustomerAuth', '$CustomerID', NOW() )";
       //  $query = mysqli_query($conn, $sql);
-       header("Location:index.php?auth=$CustomerAuth&ID=$CustomerID");
-       
+     echo json_encode($joker);
+        // header("Location:index.php?auth=$CustomerAuth&ID=$CustomerID");
+        
+         
     }
-}
+// }
 
 
 // $ch = curl_init();

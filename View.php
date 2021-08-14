@@ -1,6 +1,4 @@
-<?php 
-include("./apicode/Login.php");
-?>
+
 <!Doctype html>
 <html lang="en">
   <head>
@@ -20,7 +18,7 @@ include("./apicode/Login.php");
 <section class="ayo">
 <aside id="err"></aside>
 <div class="details">
-<form method="POST">
+<form method="POST" class="all">
   <div class="each">
     <label>
       <span>e-mail</span>
@@ -32,7 +30,7 @@ include("./apicode/Login.php");
     <label>
     <span>  password</span>
     </label>
-    <input type="password" id="password" class="text" name="password" id="password"  placeholder="******" required/>
+    <input type="password" class="text" name="password" id="password"  placeholder="******" required/>
   </div>
 
   <div class="zack">
@@ -42,5 +40,48 @@ include("./apicode/Login.php");
 </div>
  </section>
   </body>
-    
+<script type="text/javascript" >
+let password = document.getElementById("password")
+let email = document.getElementById("email")
+
+let all = document.getElementById('btn');
+
+all.addEventListener("click", function(e){
+  e.preventDefault();
+  
+let formData = new FormData();
+
+            formData.append(`password`, password.value);
+            formData.append(`email`, email.value);
+           
+            url = 'Login.php';
+
+            fetch(url, {
+                method: "POST",
+                body: formData
+            }).then(Response => {
+                return Response.json()
+                //   console.log(Response)
+
+            }).then(res => {
+                // console.log(res)
+                let oneDay = new Date().getDate();
+                let some =  {...res, time:`${oneDay}`};
+                
+               
+                let {ResponseCode, ResponseMessage, Reference} = res;
+                       if(ResponseCode == '101' ||  ResponseCode =='400'){
+                             
+                          }else if (ResponseCode == '100'){
+                            localStorage.setItem('Login',JSON.stringify(some))
+                            window.location.href='index.php?auth='+res.CustomerAuth+'&ID='+res.CustomerID;
+                          }
+          
+                   
+            })
+                .catch(err => {
+                   // console.log(err)
+                })
+              })
+</script>
 </html>
