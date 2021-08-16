@@ -18,7 +18,7 @@ $access_token = $discovery['access_token'];
  $shop_url = $discovery['shop_url'];
  $api_key = '2fc22670e98abe4f39bc94fbac789463';
 $token = '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';
-$url = "https://$api_key:$access_token@blinginglight.myshopify.com/admin/api/2021-07/orders.json";
+$url = "https://$api_key:$access_token@$shop_url/admin/api/2021-07/orders.json";
 $curl = curl_init();
 curl_setopt($curl, CURLOPT_URL, $url);
 curl_setopt($curl, CURLOPT_HTTPHEADER, array("Content-Type: application/json"));
