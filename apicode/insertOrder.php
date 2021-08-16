@@ -11,11 +11,13 @@ $query_builder = TRUE;
 // Connect to DB
 $conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
 
-$search = "SELECT * FROM shopity";
+$shop = $_REQUEST['shop'];
+$search = "SELECT * FROM shopity WHERE shop_url='$shop'";
 $query = mysqli_query($conn, $search);
 $discovery = mysqli_fetch_assoc($query);
 $access_token = $discovery['access_token'];
  $shop_url = $discovery['shop_url'];
+
  $api_key = '2fc22670e98abe4f39bc94fbac789463';
 $token = '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';
 $url = "https://$api_key:$access_token@$shop_url/admin/api/2021-07/orders.json";
@@ -30,12 +32,12 @@ curl_setopt($curl, CURLOPT_TIMEOUT, 0);
 curl_setopt($curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
 $response = curl_exec($curl);
  $jack = json_decode($response, true);
-//echo json_encode($jack);
+
 curl_close($curl);
 // $data = array();
 
 foreach($jack as $key => $jack_data){
-    
+
    foreach($jack_data as $item){
 	  // echo json_encode($item['order_status_url']);
 	 $address1  =  $item['customer']['default_address']['address1'];
@@ -82,25 +84,6 @@ else if($total[$i]['line_id'] == !empty($fetch['line_id'])){
 }
 }
 
-
-
-// foreach ($jack as $ray) {
-   
-//  //echo json_encode($jack);
-//  foreach($ray as $img){
-// //  echo json_encode($img['billing_address']);
-// $C_name = $img['billing_address']['first_name'];
-//  $C_last = $img['billing_address']['last_name'];
-//  $C_phone = $img['billing_address']['phone'];
-// $sql = "INSERT IGNORE INTO Consumer (C_name,  C_phone) VALUES('$C_name".' '."$C_last', '$C_phone' )";
-// $query = mysqli_query($conn, $sql);
-
-//  }
-
  
-// }
-
-
-//list('name'=>$name, 'destination_location'=>$destination_location ) = $data;
 
 ?>
