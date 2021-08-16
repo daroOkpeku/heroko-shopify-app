@@ -212,15 +212,14 @@ html {
   }
   .within{
       border-radius:3px 3px 3px 3px;
-      height:25%;
-      padding:1rem 0;
+      padding:2rem;
       width:40%;
       background:white;
         display: grid;
     place-items: center;
   }
   .within h1{
-      padding:1rem 0;
+      padding:1rem ;
   }
   .within aside{
       padding:1rem 0;
