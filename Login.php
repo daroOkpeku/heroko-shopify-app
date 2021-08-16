@@ -19,7 +19,7 @@ function clean($string){
 // if (isset($_POST['btn'])) {
     $email = $_REQUEST['email'];
     $pass = $_REQUEST['password'];
-    $link = $_REQUEST['url'];
+    $link = $_REQUEST['store'];
     $email = mysqli_real_escape_string($conn, $email);
     $pass = mysqli_real_escape_string($conn, $pass);
     $email = clean($email);
