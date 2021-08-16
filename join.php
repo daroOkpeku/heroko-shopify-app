@@ -392,14 +392,14 @@ within.addEventListener('click', (e) => {
     
         console.log(e.target.innerText)                 
             let formData = new FormData();
-
-            formData.append(`customerId`, customerId);
-            formData.append(`customerAuth`, customerAuth);
-            formData.append(`word`, sumbit_array);
-            formData.append(`product_code`, id);
-            formData.append(`carrier`, on.value);
-            formData.append(`product_name`, pname)
-            formData.append(`line_id`, option.value)
+            formData.append('customerId', customerId);
+            formData.append('customerAuth', customerAuth);
+            formData.append('word', sumbit_array);
+            formData.append('product_code', id);
+            formData.append('carrier', on.value);
+            formData.append('product_name', pname)
+            formData.append('line_id', option.value)
+            formData.append('shop', shop)
             url = 'send.php';
 
             fetch(url, {
