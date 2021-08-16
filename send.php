@@ -4,7 +4,10 @@
      echo "failed the connect the DB".mysqli_errno($conn);
      mysqli_close($conn);
  }
-
+ $search = "SELECT * FROM shopity";
+ $query = mysqli_query($conn, $search);
+ $discovery = mysqli_fetch_assoc($query);
+ $access_token = $discovery['access_token'];
 $list = array('word'=>$_REQUEST['word'], 'product_code'=>$_REQUEST['product_code'], 'carrier'=>$_REQUEST['carrier'], 'product_name'=>$_REQUEST['product_name'] );
 // echo json_encode($list);
 $line_id = $_REQUEST['line_id'];
@@ -23,7 +26,7 @@ $singleProduct =[];
 $api_key = '2fc22670e98abe4f39bc94fbac789463';
 $token = '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';
 
-$link = "https://$api_key:$token@blinginglight.myshopify.com/admin/api/2021-04/locations.json";
+$link = "https://$api_key:$access_token@blinginglight.myshopify.com/admin/api/2021-04/locations.json";
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $link);
 curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json"));

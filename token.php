@@ -42,11 +42,12 @@ if (hash_equals($hmac, $computed_hmac)) {
 	// Store the access token
 	$result = json_decode($result, true);
 	$access_token = $result['access_token'];
+	// echo json_encode($access_token);
 	// Show the access token (don't do this in production!)
-	$sql = "INSERT INTO shopity (shop_url, access_token, update_time) values('".$params['shop']."', '$access_token', NOW())";
+	$sql = "REPLACE INTO shopity (shop_url, access_token, update_time) values('".$params['shop']."', '$access_token', NOW())";
 	if(mysqli_query($conn, $sql)){
-        // header("Location:https://".$params['shop']."/admin/apps/delly");
-		// exit();
+        header("Location:https://".$params['shop']."/admin/apps/delly");
+		exit();
 	}else {
 		echo "failed to insert into the db";
 	}

@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <link rel="stylesheet" href="./css/style.css?v=<?php echo time(); ?>"/>
   <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
     <title>dellyman</title>
 <!-- <script defer  src="./js/same.js"></script>
   <script src="./js/jquery-3.5.1.js"></script>  -->
@@ -30,7 +31,6 @@
     <div class="above">
   <select class="pages">
     <option>Page</option>
-     <option>View order</option>
      <option>Log-Out</option>
    </select>
     <span><h3 class="top">Send  Pickup Request to Dellyman </h3></span>

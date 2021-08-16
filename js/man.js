@@ -257,10 +257,7 @@ on.addEventListener("change", function(e){
      }
      
      })
-  //    submit.addEventListener("click", function(e){
-  //   e.preventDefault()
-  //   overlay.classList.add('hide-overlay')
-  // })
+
 
 listen()
 submit.addEventListener('click', e=>{
@@ -278,7 +275,7 @@ submit.addEventListener('click', e=>{
                  pname.push(one.product);
                }
              })
-            //  console.log(king)
+          
                
               
             sumbit_array.push(soon);
@@ -289,9 +286,7 @@ submit.addEventListener('click', e=>{
         })
         let setTimer = localStorage.getItem('Login')?JSON.parse(localStorage.getItem('Login')):[]
         let futureDay = new Date().getDate();
-        // let oneDay = 24 * 60 * 60 * 1000;
-        //  let oneHour = 60 * 60 * 1000;
-        //  let oneMinute = 60 * 1000;
+      
              console.log(futureDay)
              
              if(parseInt(setTimer.time) != futureDay){
@@ -302,9 +297,6 @@ submit.addEventListener('click', e=>{
 
              }
 
-        //  let hours = Math.floor((line % oneDay) / oneHour);
-        //  let minutes = Math.floor((line % oneHour) / oneMinute);
-        // console.log(`future:${hours}   min:${minutes}`)
 within.addEventListener('click', (e) => {
   let team = [...form.querySelectorAll(".qty")]
  
@@ -383,34 +375,6 @@ within.addEventListener('click', (e) => {
 
 })
 
-// window.addEventListener('onbeforeunload', (event) => {
-//     // Cancel the event as stated by the standard.
-//     event.preventDefault();
-//     // Chrome requires returnValue to be set.
-//     // location.assign('index.php?auth='+customerAuth+'&ID='+customerId);
-//     window.location.href = 'index.php?auth='+customerAuth+'&ID='+customerId;
-//     return false;
-//   });
-
-// if(window.performance){
-//   console.log('stephen')
-//   window.location.href = 'index.php?auth='+customerAuth+'&ID='+customerId;
-// }
-
-// window.onbeforeunload
-// window.beforeunload = function(){
-//      location.assign('index.php?auth='+customerAuth+'&ID='+customerId);
-//     return "Are sure you want to Reload this page";
-// }
-
-window.onbeforeunload = function() {
-    return 'Data will be lost if you leave the page, are you sure?';
-  };
-   
- 
-// window.addEventListener('onbeforeunload', function(){
-//     return "Are sure you want to Reload this page";  
-// })
 
 
 pages.addEventListener("change", function(event){
@@ -421,11 +385,5 @@ pages.addEventListener("change", function(event){
       window.location.href='View.php?'
       localStorage.removeItem("Login");
     }
-
    });
-
-
-  //  
-  //  let presentDay = setTimer.time;
-  //  let oneday = 60 * 60 * 24 * 1000;
                 
