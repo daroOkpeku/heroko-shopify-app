@@ -1,15 +1,14 @@
 <?php
- $conn = mysqli_connect('localhost', 'root', '', 'test');
- if(mysqli_errno($conn)){
-     echo "failed the connect the DB".mysqli_errno($conn);
-     mysqli_close($conn);
- }
- $search = "SELECT * FROM shopity";
- $query = mysqli_query($conn, $search);
- $discovery = mysqli_fetch_assoc($query);
- $access_token = $discovery['access_token'];
-$list = array('word'=>$_REQUEST['word'], 'product_code'=>$_REQUEST['product_code'], 'carrier'=>$_REQUEST['carrier'], 'product_name'=>$_REQUEST['product_name'] );
-// echo json_encode($list);
+$cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+$cleardb_server = $cleardb_url["host"];
+$cleardb_username = $cleardb_url["user"];
+$cleardb_password = $cleardb_url["pass"];
+$cleardb_db = substr($cleardb_url["path"],1);
+$active_group = 'default';
+$query_builder = TRUE;
+// Connect to DB
+$conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+
 $line_id = $_REQUEST['line_id'];
 $product_code = $_REQUEST['product_code'];
 $carrier = $_REQUEST['carrier'];
@@ -17,7 +16,12 @@ $product_name = $_REQUEST['product_name'];
 $word = $_REQUEST['word'];
 $customerId = $_REQUEST['customerId'];
 $customerAuth = $_REQUEST['customerAuth'];
-//echo json_encode($word);
+$shop = $_REQUEST['shop'];
+$search = "SELECT * FROM shopity WHERE shop_url='$shop'";
+$query = mysqli_query($conn, $search);
+$discovery = mysqli_fetch_assoc($query);
+$access_token = $discovery['access_token'];
+ $shop_url = $discovery['shop_url'];
 $fullname = '';
 $tele = '';
 $city = '';
@@ -26,7 +30,7 @@ $singleProduct =[];
 $api_key = '2fc22670e98abe4f39bc94fbac789463';
 $token = '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';
 
-$link = "https://$api_key:$access_token@blinginglight.myshopify.com/admin/api/2021-04/locations.json";
+$link = "https://$api_key:$access_token@$shop_url/admin/api/2021-04/locations.json";
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $link);
 curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json"));
