@@ -29,7 +29,7 @@
     <label>
     <span>Shopify store url</span>
     </label>
-    <input type="text" class="text" name="url" id="store"  placeholder="example.myshopify.com" required/>
+    <input type="text" class="text" name="store" id="store"  placeholder="example.myshopify.com" required/>
   </div>
 
 
@@ -58,9 +58,9 @@ all.addEventListener("click", function(e){
   e.preventDefault();
   
 let formData = new FormData();
-             formData.append('store', store.value);
-            formData.append('password', password.value);
-            formData.append('email', email.value);
+            formData.append('store', store.value)
+            formData.append('password', password.value)
+            formData.append('email', email.value)
             
             url = 'Login.php';
 
