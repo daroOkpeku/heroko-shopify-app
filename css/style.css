@@ -218,8 +218,8 @@ html {
         display: grid;
     place-items: center;
   }
-  .within h1{
-      padding:1rem ;
+  .within h2{
+      padding:1rem;
   }
   .within aside{
       padding:1rem 0;
