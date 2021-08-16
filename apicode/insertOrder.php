@@ -37,7 +37,7 @@ curl_close($curl);
 // $data = array();
 
 foreach($jack as $key => $jack_data){
-
+echo print_r($jack_data);
    foreach($jack_data as $item){
 	  // echo json_encode($item['order_status_url']);
 	 $address1  =  $item['customer']['default_address']['address1'];
