@@ -2,19 +2,19 @@
 <?php
 include('./apicode/connect.php');
 // include("./apicode/Login.php");
-include('./apicode/insertOrder.php');
 
 
 
 
-if(!isset($_REQUEST['auth']) && !isset($_REQUEST['ID'])){
+
+if(!isset($_REQUEST['auth']) && !isset($_REQUEST['ID']) && !isset($_REQUEST['shop'])){
   echo "<script> var storage = !!localStorage.getItem('Login')
         let nibble ={};
         if(storage == true){
       nibble = JSON.parse(localStorage.getItem('Login'))
         }
       console.log(nibble);
-      var data = 'index.php?auth='+nibble.CustomerAuth+'&ID='+nibble.CustomerID;
+      var data = 'index.php?auth='+nibble.CustomerAuth+'&ID='+nibble.CustomerID+'&shop='+nibble.shop;
       console.log(data)
 storage?window.location.href=data:window.location.href='View.php';
   console.log(storage);
@@ -22,11 +22,10 @@ storage?window.location.href=data:window.location.href='View.php';
   </script>";
   // header('Location:View.php');
  
-
 }else{
-
-  $auth = $_REQUEST['auth'];
+$auth = $_REQUEST['auth'];
 $consumerid = $_REQUEST['ID'];
+include('./apicode/insertOrder.php');
 $whole = [];
 $sql_all ='SELECT * FROM delly_man_order';
 $query_all = mysqli_query($conn, $sql_all);

@@ -25,6 +25,15 @@
     <input type="text" id="email" class="text" name="email" id="email" placeholder="delly@gmail.com" required/> 
   </div>
 
+  <div class="each">
+    <label>
+    <span>Shopify store url</span>
+    </label>
+    <input type="text" class="text" name="password" id="url"  placeholder="example.myshopify.com" required/>
+  </div>
+
+
+
 <div class="each">
     <label>
     <span>  password</span>
@@ -42,7 +51,7 @@
 <script type="text/javascript" >
 let password = document.getElementById("password")
 let email = document.getElementById("email")
-
+let url = document.getElementById("url")
 let all = document.getElementById('btn');
 
 all.addEventListener("click", function(e){
@@ -52,7 +61,7 @@ let formData = new FormData();
 
             formData.append(`password`, password.value);
             formData.append(`email`, email.value);
-           
+            formData.append(`url`, url.value);
             url = 'Login.php';
 
             fetch(url, {
@@ -63,17 +72,17 @@ let formData = new FormData();
                 //   console.log(Response)
 
             }).then(res => {
-                // console.log(res)
+                 console.log(res)
                 let oneDay = new Date().getDate();
                 let some =  {...res, time:`${oneDay}`};
                 
                
-                let {ResponseCode, ResponseMessage, Reference} = res;
+                let {ResponseCode, ResponseMessage, Reference, shop} = res;
                        if(ResponseCode == '101' ||  ResponseCode =='400'){
                              
                           }else if (ResponseCode == '100'){
                             localStorage.setItem('Login',JSON.stringify(some))
-                            window.location.href='index.php?auth='+res.CustomerAuth+'&ID='+res.CustomerID;
+                            window.location.href='index.php?auth='+res.CustomerAuth+'&ID='+res.CustomerID+'&shop='+res.shop;
                           }
           
                    
