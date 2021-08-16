@@ -9,24 +9,11 @@ $query_builder = TRUE;
 // Connect to DB
 $conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
 $output = " ";
-// include("connect.php");
-function clean($string){
-  $string = stripslashes($string);
-  $string  = strip_tags($string);
-  $string = trim($string);
-  return $string;
-}
-// if (isset($_POST['btn'])) {
-    $email = $_REQUEST['email'];
-    $pass = $_REQUEST['password'];
-    $link = $_REQUEST['store'];
-    $email = mysqli_real_escape_string($conn, $email);
-    $pass = mysqli_real_escape_string($conn, $pass);
-    $email = clean($email);
-    $pass = clean($pass);
-    $pass = filter_var($pass, FILTER_SANITIZE_STRING);
-    $pass = preg_replace("/[^A-Za-z0-9]/", " ", $pass);
-    $email = filter_var($email, FILTER_VALIDATE_EMAIL);
+
+$email = $_REQUEST['email'];
+$pass = $_REQUEST['password'];
+$link = $_REQUEST['store'];
+
  
     $ch = curl_init();
 
@@ -55,7 +42,7 @@ function clean($string){
     //     echo "cURL Error #:" . $err;
     // }
      $joker = json_decode($response, TRUE);
-    //  echo print_r($joker);
+    
     if($joker['ResponseCode'] == '400' || $joker['ResponseCode'] == '101'){
       $output .=  $joker['ResponseMessage'];
     }else{
@@ -68,16 +55,9 @@ function clean($string){
         echo json_encode($zoom);
       }else{
      $fetch_all = mysqli_fetch_assoc($query_link);
+   
      $joker['shop'] =$fetch_all['shop_url'];
      echo json_encode($joker);
-     
-      }
-     
-      // $sql = "REPLACE INTO delly(Email, Name, PhoneNumber, CustomerAuth, CustomerID, upadta_time ) values('$Email', '$Name', '$PhoneNumber', '$CustomerAuth', '$CustomerID', NOW() )";
-      //  $query = mysqli_query($conn, $sql);
-    // echo json_encode($joker);
-        // header("Location:index.php?auth=$CustomerAuth&ID=$CustomerID");
-        
-         
+      }      
     }
 ?>
