@@ -80,5 +80,4 @@ storage?window.location.href=data:window.location.href='View.php';
 
 include('./Apart.php');
 }
-
-}?>
+?>
