@@ -85,7 +85,7 @@
 </section>
 
   </body>
-  <script>
+  <script type="text/javascript">
  let table = document.querySelector('tbody');
 let authId = document.querySelector(".show");
 let option = document.querySelector('.online');
@@ -105,7 +105,7 @@ const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
  let customerId = params.ID;
 let customerAuth = params.auth;
-let shop = params.shop
+let shopLink = params.shop
 
 if(customerAuth && customerId){
 //debugger
@@ -139,8 +139,8 @@ async function delly() {
     try {
        let data = await fetch('./apicode/selectOrder.php'); 
        let all = await data.json();
-       let shop_fliter = all.filter(item=>item.vendor == shop)
-       shop_fliter.map((item)=>{
+       let userUrl = all.filter((item)=>item.vendor.toLowerCase() == shopLink.toLowerCase());
+       userUrl.map((item)=>{
          orders.push(item.line_id);
        })
       
@@ -153,7 +153,7 @@ async function delly() {
             let select = e.target.options[e.target.selectedIndex].innerText;
            
             
-          let drama = shop_fliter.filter((item)=>item.line_id == select)
+          let drama = userUrl.filter((item)=>item.line_id == select)
           localStorage.setItem("filters", JSON.stringify(drama));
          
 
@@ -376,6 +376,9 @@ submit.addEventListener('click', e=>{
         })
         let setTimer = localStorage.getItem('Login')?JSON.parse(localStorage.getItem('Login')):[]
         let futureDay = new Date().getDate();
+      
+             console.log(futureDay)
+             
              if(parseInt(setTimer.time) != futureDay){
                setTimeout(()=>{
                 localStorage.removeItem("Login");
@@ -392,14 +395,14 @@ within.addEventListener('click', (e) => {
     
         console.log(e.target.innerText)                 
             let formData = new FormData();
-            formData.append('customerId', customerId);
-            formData.append('customerAuth', customerAuth);
-            formData.append('word', sumbit_array);
-            formData.append('product_code', id);
-            formData.append('carrier', on.value);
-            formData.append('product_name', pname)
-            formData.append('line_id', option.value)
-            formData.append('shop', shop)
+
+            formData.append(`customerId`, customerId);
+            formData.append(`customerAuth`, customerAuth);
+            formData.append(`word`, sumbit_array);
+            formData.append(`product_code`, id);
+            formData.append(`carrier`, on.value);
+            formData.append(`product_name`, pname)
+            formData.append(`line_id`, option.value)
             url = 'send.php';
 
             fetch(url, {
