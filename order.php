@@ -118,8 +118,10 @@ let pages = document.querySelector(".pages");
 let table = document.querySelector("tbody");
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
- let currentUrl = document.URL;
-localStorage.setItem('currentUrl', JSON.stringify(currentUrl)
+window.addEventListener('beforeunload', function (e) {
+  let currentUrl = document.URL;
+localStorage.setItem('currentUrl', JSON.stringify(currentUrl))
+});
  let customerId = params.id;
 let customerAuth = params.auth;
 let shop = params.shop;
