@@ -121,6 +121,7 @@ const params = Object.fromEntries(urlSearchParams.entries());
 window.addEventListener('beforeunload', function (e) {
   let currentUrl = document.URL;
 localStorage.setItem('currentUrl', JSON.stringify(currentUrl))
+   return 'are you sure';
 });
  let customerId = params.id;
 let customerAuth = params.auth;
