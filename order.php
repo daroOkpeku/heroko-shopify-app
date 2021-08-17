@@ -93,6 +93,7 @@ orderStorage?window.location.href=data:window.location.href='View.php';
   <h2> View orders</h2>
   <select class="pages" >
     <option>Page</option>
+   <option>Make an order</option>
      <option>Login</option>
    </select>
    </section>
