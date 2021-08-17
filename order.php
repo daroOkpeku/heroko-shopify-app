@@ -111,7 +111,7 @@ const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
  let customerId = params.id;
 let customerAuth = params.auth;
-
+let shop = params.shop;
 let output = "";
 async function delly(){
     let data = await fetch('./apicode/delly.php');
@@ -136,9 +136,10 @@ pages.addEventListener("change", function(event){
     let select = event.target.options[event.target.selectedIndex].innerText;
     console.log(select)
     if(select == 'Make an order'){
-      window.location.href='index.php?auth='+customerAuth+'&ID='+customerId;
+      window.location.href='order.php?auth='+customerAuth+'&ID='+customerId+'&shop='+shop;
+     
     }else if(select == 'Login'){
-      window.location.href='View.php?'
+      window.location.href='View.php'
     }
 
    });
