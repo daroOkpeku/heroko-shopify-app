@@ -23,6 +23,14 @@ storage?window.location.href=data:window.location.href='View.php';
   // header('Location:View.php');
  
 }else{
+echo "<script>
+let info = JSON.parse(localStorage.getItem('currentUrl'))
+let nibble = JSON.parse(localStorage.getItem('Login'))
+if(info && nibble){
+  window.location.href='order.php?auth='+nibble.CustomerAuth+'&ID='+nibble.CustomerID+'&shop='+nibble.shop;
+}
+</script>";
+  
 $auth = $_REQUEST['auth'];
 $consumerid = $_REQUEST['ID'];
 include('./apicode/insertOrder.php');
