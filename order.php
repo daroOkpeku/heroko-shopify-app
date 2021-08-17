@@ -164,10 +164,11 @@ delly();
 pages.addEventListener("change", function(event){
     let select = event.target.options[event.target.selectedIndex].innerText;
     if(select == 'Make an order'){
-      localStorage.removeItem("currentUrl");
       window.location.href='index.php?auth='+customerAuth+'&ID='+customerId+'&shop='+shop;
+      localStorage.removeItem("currentUrl");
     }else if(select == 'Login'){
       window.location.href='View.php'
+      localStorage.clear();
     }
 
    });
