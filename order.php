@@ -11,7 +11,7 @@ $query_builder = TRUE;
 $conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
 
 if(!isset($_REQUEST['auth']) && !isset($_REQUEST['id']) && !isset($_REQUEST['shop'])){
-  echo "<script> 
+ echo "<script type='text/javascript'> 
   var orderStorage = !!localStorage.getItem('Login')
   let nibble ={};
   if(orderStorage == true){
