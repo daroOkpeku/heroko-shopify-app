@@ -130,10 +130,7 @@ let orders = ["Select Order"];
    let id   = [];
  let sumbit_array = [];
 order.addEventListener('click', function(e){
-  
-     window.location.href='order.php?auth='+customerAuth+'&id='+customerId;
-  
-
+  window.location.href='order.php?auth='+customerAuth+'&id='+customerId+'&shop='+shopLink;
 })
 async function delly() {
     try {
