@@ -467,7 +467,7 @@ within.addEventListener('click', (e) => {
 pages.addEventListener("change", function(event){
     let select = event.target.options[event.target.selectedIndex].innerText;
     if(select == 'View order'){
-      window.location.href='order.php?auth='+customerAuth+'&id='+customerId;
+      window.location.href='order.php?auth='+customerAuth+'&id='+customerId+'&shop='+shopLink;
     }else if(select == 'Log-Out'){
       window.location.href='View.php?'
       localStorage.removeItem("Login");
