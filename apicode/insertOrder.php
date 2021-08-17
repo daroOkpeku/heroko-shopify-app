@@ -37,7 +37,6 @@ curl_close($curl);
 // $data = array();
 
 foreach($jack as $key => $jack_data){
-
    foreach($jack_data as $item){
 	  // echo json_encode($item['order_status_url']);
 	 $address1  =  $item['customer']['default_address']['address1'];
@@ -61,27 +60,27 @@ foreach($jack as $key => $jack_data){
 					 $sku = $item_list['sku'];
 			$arr = array('line_id'=>$id,'firstname'=>$first_name, 'lastname'=>$last_name, 'phone'=>$phone, 'email'=>$email, 'order_id'=>$order_id, 'quantity'=>$quantity, 'price'=>$price, 'productname'=>$product_name, 'sku'=>$sku, 'product_id'=>$product_id, 'address'=>$address1, 'city'=>$city, 'province'=>$province, 'vendor'=>$vendor);
 			array_push($total, $arr);
-        //  $sql = "INSERT INTO rate(firstname, lastname, phone, email, orderid, quantity, amount, product, sku) values( '$first_name', '$last_name', '$phone', '$email', '$order_id', '$quantity', '$price', '$product_name', '$sku')";
-        //  $query = mysqli_query($conn, $sql);
+    
 		  }
 	  }
    }
 }
 
-$sql = "SELECT * FROM rate";
-$query = mysqli_query($conn, $sql);
-$fetch = mysqli_fetch_assoc($query);
+
  
- //echo  json_encode($total);
 for($i =0; $i<count($total); $i++){
 
-if(empty($fetch['line_id']) == !empty($total[$i]['line_id'])){
- $sql = "INSERT INTO rate(firstname, lastname, phone, email, orderid, quantity, amount, product, sku, line_id, product_id, address, city,  vendor) values( '".$total[$i]['firstname']."', '".$total[$i]['lastname']."', '".$total[$i]['phone']."', '".$total[$i]['email']."', '".$total[$i]['order_id']."', '".$total[$i]['quantity']."', '".$total[$i]['price']."', '".$total[$i]['productname']."', '".$total[$i]['sku']."', '".$total[$i]['line_id']."', '".$total[$i]['product_id']."', '".$total[$i]['address']."', '".$total[$i]['city']."',  '".$total[$i]['vendor']."')";
- $query = mysqli_query($conn, $sql);
-}
-else if($total[$i]['line_id'] == !empty($fetch['line_id'])){
-
-}
+	$product_id = $total[$i]['product_id'];
+	$line_id = $total[$i]['line_id'];
+	$sql_in = "SELECT * FROM rate WHERE line_id='$line_id' AND product_id='$product_id' ";
+	$query_in = mysqli_query($conn, $sql_in);
+     $num_in = mysqli_num_rows($query_in);
+    if($num_in > 0){
+    //  return false;
+	}else{
+		$sql_send = "INSERT INTO rate(firstname, lastname, phone, email, orderid, quantity, amount, product, sku, line_id, product_id, address, city,  vendor) values( '".$total[$i]['firstname']."', '".$total[$i]['lastname']."', '".$total[$i]['phone']."', '".$total[$i]['email']."', '".$total[$i]['order_id']."', '".$total[$i]['quantity']."', '".$total[$i]['price']."', '".$total[$i]['productname']."', '".$total[$i]['sku']."', '".$total[$i]['line_id']."', '".$total[$i]['product_id']."', '".$total[$i]['address']."', '".$total[$i]['city']."',  '".$total[$i]['vendor']."')";
+		 $query = mysqli_query($conn, $sql_send);
+	}
 }
 
  
