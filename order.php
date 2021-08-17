@@ -11,7 +11,7 @@ nibble = JSON.parse(localStorage.getItem('Login'))
 console.log(nibble)
   }
 console.log(nibble);
-var data = 'index.php?auth='+nibble.CustomerAuth+'&ID='+nibble.CustomerID+'&shop='+nibble.shop;
+var data = 'order.php?auth='+nibble.CustomerAuth+'&ID='+nibble.CustomerID+'&shop='+nibble.shop;
 console.log(data)
 storage?window.location.href=data:window.location.href='View.php';
 console.log(storage);
