@@ -11,15 +11,14 @@ $query_builder = TRUE;
 $conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
 
 if(!isset($_REQUEST['auth']) && !isset($_REQUEST['id']) && !isset($_REQUEST['shop'])){
-  echo "<script> var storage = !!localStorage.getItem('Login')
+  echo "<script> 
+  var orderStorage = !!localStorage.getItem('Login')
   let nibble ={};
-  if(storage == true){
+  if(orderStorage == true){
 nibble = JSON.parse(localStorage.getItem('Login'))
-console.log(nibble)
   }
-console.log(nibble);
 var data = 'order.php?auth='+nibble.CustomerAuth+'&ID='+nibble.CustomerID+'&shop='+nibble.shop;
-storage?window.location.href=data:window.location.href='View.php';
+orderStorage?window.location.href=data:window.location.href='View.php';
 </script>";
 }else{
   $auth = $_REQUEST['auth'];
