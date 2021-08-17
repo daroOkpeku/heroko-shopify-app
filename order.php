@@ -1,8 +1,6 @@
 <!doctype html>
 <?php
 include('./apicode/connect.php');
- $auth = $_REQUEST['auth'];
-$consumerid = $_REQUEST['id'];
 if(!isset($_REQUEST['auth']) && !isset($_REQUEST['id']) && !isset($_REQUEST['shop'])){
   echo "<script> var storage = !!localStorage.getItem('Login')
   let nibble ={};
@@ -11,13 +9,14 @@ nibble = JSON.parse(localStorage.getItem('Login'))
 console.log(nibble)
   }
 console.log(nibble);
-var data = 'order.php?auth='+nibble.CustomerAuth+'&ID='+nibble.CustomerID+'&shop='+nibble.shop;
+var data = 'order.php?auth='+nibble.CustomerAuth+'&id='+nibble.CustomerID+'&shop='+nibble.shop;
 console.log(data)
 storage?window.location.href=data:window.location.href='View.php';
 console.log(storage);
-
 </script>";
 }else{
+  $auth = $_REQUEST['auth'];
+  $consumerid = $_REQUEST['id'];
     $whole = [];
     $sql_all ='SELECT * FROM delly_man_order';
     $query_all = mysqli_query($conn, $sql_all);
@@ -112,6 +111,7 @@ const params = Object.fromEntries(urlSearchParams.entries());
  let customerId = params.id;
 let customerAuth = params.auth;
 let shop = params.shop;
+console.log(shop)
 let output = "";
 async function delly(){
     let data = await fetch('./apicode/delly.php');
@@ -136,10 +136,9 @@ pages.addEventListener("change", function(event){
     let select = event.target.options[event.target.selectedIndex].innerText;
     console.log(select)
     if(select == 'Make an order'){
-      window.location.href='order.php?auth='+customerAuth+'&ID='+customerId+'&shop='+shop;
-     
+      window.location.href='index.php?auth='+customerAuth+'&ID='+customerId;
     }else if(select == 'Login'){
-      window.location.href='View.php'
+      window.location.href='View.php?'
     }
 
    });
