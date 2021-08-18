@@ -80,11 +80,11 @@ for($i=0; $i<count($code_filted); $i++){
   $sub['phone'];
   $sub['address']; 
   $sub['city'];
- $sub['state'];
+ //$sub['state'];
 
 $fullname = $sub['firstname']." ".$sub['lastname'].',';
-$tele = $sub['phone'];
-$fulladdress = $sub['address'].' '.$sub['city'].$sub['state'];
+$tele =   substr($sub['phone'], 4);
+$fulladdress = $sub['address'].' '.$sub['city'];
 $city = $sub['city'];
 }
 
@@ -131,7 +131,7 @@ $city = $sub['city'];
                     "Packages" => [
                           array(
                             "DeliveryContactName" => "$fullname",
-                            "DeliveryContactNumber" => "$tele",
+                            "DeliveryContactNumber" => '0'."$tele",
                             "DeliveryGooglePlaceAddress" => "$city",
                             "DeliveryLandmark" => "Moblie",
                             "PackageDescription" => "$product_name qty('".array_sum(explode(',', $word))."')",
@@ -186,7 +186,7 @@ $city = $sub['city'];
                               
                            }
                            $pushed = json_encode($singleProduct);
-                           $sql_in = "INSERT INTO delly_man_order(line_id, product, Reference, dellymanid, OrderStatus ) values( '$line_id', '$pushed', '".$joker['Reference']."', '".$sam['OrderID']."', '".$sam['OrderStatus']."')";
+                          $sql_in = "INSERT INTO delly_man_order(line_id, product, Reference, dellymanid, OrderStatus, store ) values( '$line_id', '$pushed', '".$joker['Reference']."', '".$sam['OrderID']."', '".$sam['OrderStatus']."', '$shop')";
                            mysqli_query($conn, $sql_in);
                        }
                    }
