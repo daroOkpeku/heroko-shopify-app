@@ -118,14 +118,14 @@ let pages = document.querySelector(".pages");
 let table = document.querySelector("tbody");
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
-window.addEventListener('beforeunload', function (e) {
-  let currentUrl = document.URL;
-localStorage.setItem('currentUrl', JSON.stringify(currentUrl))
-   return 'are you sure';
-});
  let customerId = params.id;
 let customerAuth = params.auth;
 let shop = params.shop;
+window.addEventListener('beforeunload', function (e) {
+ let currentUrl = document.URL;
+localStorage.setItem('currentUrl', JSON.stringify(currentUrl))
+});
+
 if(customerAuth && customerId){
 //debugger
 }else{
@@ -137,7 +137,7 @@ if(customerAuth && customerId){
   nibble = JSON.parse(localStorage.getItem('Login'));
   customerid = nibble.CustomerID
   customerAuth = nibble.CustomerAuth
-  console.log("this is me ", customerid+""+customerAuth)
+  shop = nibble.shop;
     }
 
 }
@@ -145,7 +145,8 @@ let output = "";
 async function delly(){
     let data = await fetch('./apicode/delly.php');
     let mega = await data.json();
-    mega.map(item=>{
+    let fetchAll = mega.filter(item=>item.store == shop);
+    fetchAll.map(item=>{
         let{line_id, dellymanid, Reference, OrderStatus, product} = item;
         let good = JSON.parse(product);
         //productName, amount
