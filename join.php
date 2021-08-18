@@ -393,13 +393,14 @@ within.addEventListener('click', (e) => {
         console.log(e.target.innerText)                 
             let formData = new FormData();
 
-            formData.append(`customerId`, customerId);
-            formData.append(`customerAuth`, customerAuth);
-            formData.append(`word`, sumbit_array);
-            formData.append(`product_code`, id);
-            formData.append(`carrier`, on.value);
-            formData.append(`product_name`, pname)
-            formData.append(`line_id`, option.value)
+            formData.append('customerId', customerId);
+            formData.append('customerAuth', customerAuth);
+            formData.append('word', sumbit_array);
+            formData.append('product_code', id);
+            formData.append('carrier', on.value);
+            formData.append('product_name', pname)
+            formData.append('line_id', option.value)
+            formData.append('shop', shopLink)
             url = 'send.php';
 
             fetch(url, {
@@ -470,7 +471,7 @@ pages.addEventListener("change", function(event){
       window.location.href='order.php?auth='+customerAuth+'&id='+customerId+'&shop='+shopLink;
     }else if(select == 'Log-Out'){
       window.location.href='View.php?'
-      localStorage.removeItem("Login");
+      localStorage.clear();
     }
    });
   </script>
