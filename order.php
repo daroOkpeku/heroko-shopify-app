@@ -82,6 +82,9 @@ orderStorage?window.location.href=data:window.location.href='View.php';
 <html>
 <head>
 <link rel="stylesheet" href="./css/order.css?v=<?php echo time(); ?>"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="above">
@@ -153,7 +156,7 @@ async function delly(){
         table.innerHTML += `
               <tr class="border_bottom">
               <td>${line_id}</td>
-              <td><p >${good.map(item=>item.productName+' x'+item.amount+'Qty'+'<br/>')}</p></td>
+              <td><p class="text-xs">${good.map(item=>item.productName+' x'+item.amount+'Qty'+'<br/>')}</p></td>
               <td>${Reference}</td>
               <td>${OrderStatus}</td>
               <td>${update_time}</td>
