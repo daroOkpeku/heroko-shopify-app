@@ -104,7 +104,7 @@ orderStorage?window.location.href=data:window.location.href='View.php';
                 <th>Products</th>
                 <th>Dellyman order id</th>
                 <th>OrderStatus</th>
-                <!-- <th> Date</th> -->
+                <th> Date</th>
               </tr>
             </thead>
               <tbody>
@@ -147,7 +147,7 @@ async function delly(){
     let mega = await data.json();
     let fetchAll = mega.filter(item=>item.store == shop);
     fetchAll.map(item=>{
-        let{line_id, dellymanid, Reference, OrderStatus, product} = item;
+        let{line_id, dellymanid, Reference, OrderStatus, product, update_time} = item;
         let good = JSON.parse(product);
         //productName, amount
         table.innerHTML += `
@@ -156,6 +156,7 @@ async function delly(){
               <td><p >${good.map(item=>item.productName+' x'+item.amount+'Qty'+'<br/>')}</p></td>
               <td>${Reference}</td>
               <td>${OrderStatus}</td>
+              <td>${update_time}</td>
               </tr>
         `;
     })
