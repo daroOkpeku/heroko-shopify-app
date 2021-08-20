@@ -132,8 +132,8 @@ $city = $sub['city'];
                           array(
                             "DeliveryContactName" => "$fullname",
                             "DeliveryContactNumber" => '0'."$tele",
-                            "DeliveryGooglePlaceAddress" => "$city",
-                            "DeliveryLandmark" => "Moblie",
+                            "DeliveryGooglePlaceAddress" => "$fulladdress",
+                            "DeliveryLandmark" => "$city",
                             "PackageDescription" => "$product_name qty('".array_sum(explode(',', $word))."')",
                             "ProductAmount" => "2000",
                           )
@@ -186,7 +186,7 @@ $city = $sub['city'];
                               
                            }
                            $pushed = json_encode($singleProduct);
-                          $sql_in = "INSERT INTO delly_man_order(line_id, product, Reference, dellymanid, OrderStatus, store ) values( '$line_id', '$pushed', '".$joker['Reference']."', '".$sam['OrderID']."', '".$sam['OrderStatus']."', '$shop')";
+                          $sql_in = "INSERT INTO delly_man_order(line_id, product, Reference, dellymanid, OrderStatus, store, update_time) values( '$line_id', '$pushed', '".$joker['Reference']."', '".$sam['OrderID']."', '".$sam['OrderStatus']."', '$shop', '".date('Y-m-d')."')";
                            mysqli_query($conn, $sql_in);
                        }
                    }
