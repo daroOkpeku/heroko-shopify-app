@@ -93,7 +93,10 @@ orderStorage?window.location.href=data:window.location.href='View.php';
      </div>
 <div class="card">
     <section>
+ <section class="both">
   <h2> View orders</h2>
+   <span> search <input type="text" class="search"  placeholder="Dellyman orderId or Date"/> </span>
+   </section>
   <select class="pages" >
     <option>Page</option>
    <option>Make an order</option>
@@ -112,6 +115,7 @@ orderStorage?window.location.href=data:window.location.href='View.php';
             </thead>
               <tbody>
               </tbody>
+         <tfoot></tfoot>
       </table>
 
   </div>
