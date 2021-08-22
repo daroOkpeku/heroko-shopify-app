@@ -123,6 +123,7 @@ orderStorage?window.location.href=data:window.location.href='View.php';
 <script>
 let pages = document.querySelector(".pages");
 let table = document.querySelector("tbody");
+let search = document.querySelector('.both input')
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
  let customerId = params.id;
@@ -153,22 +154,117 @@ async function delly(){
     let data = await fetch('./apicode/delly.php');
     let mega = await data.json();
     let fetchAll = mega.filter(item=>item.store == shop);
-    fetchAll.map(item=>{
-        let{line_id, dellymanid, Reference, OrderStatus, product, update_time} = item;
+//     fetchAll.map(item=>{
+//         let{line_id, dellymanid, Reference, OrderStatus, product, update_time} = item;
+//         let good = JSON.parse(product);
+//         //productName, amount
+//         table.innerHTML += `
+//               <tr class="border_bottom">
+//               <td>${line_id}</td>
+//               <td><p class="text-xs">${good.map(item=>item.productName+' x'+item.amount+'Qty'+'<br/>')}</p></td>
+//               <td>${Reference}</td>
+//               <td>${OrderStatus}</td>
+//               <td>${update_time}</td>
+//               </tr>
+//         `;
+//     })
+ search.addEventListener('keyup', function(e){
+    let input = e.target.value
+    if(input){
+     let change = fetchAll.filter(one=>one.Reference.toLowerCase() == input.toLowerCase())
+     var cool = change.map(item=>{
+        let{line_id, dellymanid, Reference, OrderStatus, product} = item;
         let good = JSON.parse(product);
         //productName, amount
-        table.innerHTML += `
-              <tr class="border_bottom">
+           return `<tr class="border_bottom">
               <td>${line_id}</td>
-              <td><p class="text-xs">${good.map(item=>item.productName+' x'+item.amount+'Qty'+'<br/>')}</p></td>
+              <td><p >${good.map(item=>item.productName+' x'+item.amount+'Qty'+'<br/>')}</p></td>
               <td>${Reference}</td>
               <td>${OrderStatus}</td>
-              <td>${update_time}</td>
-              </tr>
-        `;
+              </tr> `;  
+              
     })
+    table.innerHTML = cool.join(' ')
+    }else{
+      var cool =  fetchAll.map(item=>{
+        let{line_id, dellymanid, Reference, OrderStatus, product} = item;
+        let good = JSON.parse(product);
+        //productName, amount
+           return `<tr class="border_bottom">
+              <td>${line_id}</td>
+              <td><p >${good.map(item=>item.productName+' x'+item.amount+'Qty'+'<br/>')}</p></td>
+              <td>${Reference}</td>
+              <td>${OrderStatus}</td>
+              </tr> `;  
+           
+    })
+    table.innerHTML = cool.join(' ')
+    }
+
+   })
+ 
+ 
+ 
+ 
+ 
+ 
+ setUp(table, fetchAll, all_rows);
+ instruction(table, fetchAll, current_page, all_rows);  
 }
 delly();
+ 
+ var current_page = 1;
+ let all_rows = 4;
+ 
+ function instruction(table, fetchAll, current_page, all_rows){
+    
+     current_page--;
+ 
+     let start = all_rows * current_page;
+     let end = start + all_rows;
+     let pagina = fetchAll.slice(start, end);
+    
+     for(var i =0; i < pagina.length; i++ ){
+      var product = JSON.parse(pagina[i]['product']);
+          table.innerHTML += `<tr class="border_bottom">
+              <td>${pagina[i]['line_id']}</td>
+              <td><p >${product.map(item=>item.productName+' x'+item.amount+'Qty'+'<br/>')}</p></td>
+               <td>${pagina[i]['Reference']}</td>
+               <td>${pagina[i]['OrderStatus']}</td>
+               </tr> `;
+     }
+    
+    }
+
+   let foot = document.querySelector("tfoot");
+    function setUp(table, fetchAll, all_rows){
+      
+      let page = Math.ceil(fetchAll.length / all_rows);
+      
+      for(var f = 1; f < page + 1; f++){
+        current_page = 1
+         foot.innerHTML +=`<button type="button" data-id="${f}"class="click">${f}</button>`;
+    
+     
+       }
+       let click = document.querySelector("tfoot");
+    click.addEventListener("click", function(e){
+       let num = parseInt(e.target.dataset.id)
+           current_page = num
+          deleteRows();
+           instruction(table, fetchAll, current_page, all_rows)
+    })
+    function deleteRows(){
+     let row = document.querySelector("tbody");
+     row.innerHTML = " ";
+             
+            }
+ 
+    }
+ 
+ 
+ 
+ 
 
 pages.addEventListener("change", function(event){
     let select = event.target.options[event.target.selectedIndex].innerText;
