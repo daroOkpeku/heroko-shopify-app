@@ -173,7 +173,7 @@ async function delly(){
     if(input){
      let change = fetchAll.filter(one=>one.Reference.toLowerCase() == input.toLowerCase())
      var cool = change.map(item=>{
-        let{line_id, dellymanid, Reference, OrderStatus, product} = item;
+       let{line_id, dellymanid, Reference, OrderStatus, product, update_time} = item;
         let good = JSON.parse(product);
         //productName, amount
            return `<tr class="border_bottom">
@@ -181,6 +181,7 @@ async function delly(){
               <td><p >${good.map(item=>item.productName+' x'+item.amount+'Qty'+'<br/>')}</p></td>
               <td>${Reference}</td>
               <td>${OrderStatus}</td>
+              <td>${update_time}</td>
               </tr> `;  
               
     })
@@ -204,6 +205,7 @@ async function delly(){
               <td><p >${product.map(item=>item.productName+' x'+item.amount+'Qty'+'<br/>')}</p></td>
                <td>${pagina[i]['Reference']}</td>
                <td>${pagina[i]['OrderStatus']}</td>
+                <td>${pagina[i]['update_time']}</td>
                </tr> `;
      }
     
@@ -243,6 +245,7 @@ delly();
               <td><p >${product.map(item=>item.productName+' x'+item.amount+'Qty'+'<br/>')}</p></td>
                <td>${pagina[i]['Reference']}</td>
                <td>${pagina[i]['OrderStatus']}</td>
+                <td>${pagina[i]['update_time']}</td>
                </tr> `;
      }
     
