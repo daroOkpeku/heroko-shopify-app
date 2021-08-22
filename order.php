@@ -186,19 +186,7 @@ async function delly(){
     })
     table.innerHTML = cool.join(' ')
      }else{
-//       var cool =  fetchAll.map(item=>{
-//         let{line_id, dellymanid, Reference, OrderStatus, product} = item;
-//         let good = JSON.parse(product);
-//         //productName, amount
-//            return `<tr class="border_bottom">
-//               <td>${line_id}</td>
-//               <td><p >${good.map(item=>item.productName+' x'+item.amount+'Qty'+'<br/>')}</p></td>
-//               <td>${Reference}</td>
-//               <td>${OrderStatus}</td>
-//               </tr> `;  
-           
-//     })
-//     table.innerHTML = cool.join(' ')
+
      var current_page = 1;
     let all_rows = 4;
     function instruction(table, fetchAll, current_page, all_rows){
@@ -220,33 +208,7 @@ async function delly(){
      }
     
     }
-
-   let foot = document.querySelector("tfoot");
-    function setUp(table, fetchAll, all_rows){
-      
-      let page = Math.ceil(fetchAll.length / all_rows);
-      
-      for(var f = 1; f < page + 1; f++){
-         foot.innerHTML +=`<button type="button" data-id="${f}"class="click">${f}</button>`;
-
-       }
-       let click = document.querySelector("tfoot");
-    click.addEventListener("click", function(e){
-       let num = parseInt(e.target.dataset.id)
-           current_page = num
-          deleteRows();
-           instruction(table, fetchAll, current_page, all_rows)
-    })
-    function deleteRows(){
-     let row = document.querySelector("tbody");
-     row.innerHTML = " ";
-             
-            }
- 
-    }
-     
-     
-     
+instruction(table, fetchAll, current_page, all_rows)
      
      
     }
