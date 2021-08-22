@@ -64,11 +64,13 @@ table th{
   align-items: center;
   justify-content:space-between;
   flex-direction: column;
-  
+  color: #9D2143;
 }
 .both input{
   width:150px;
-  height:40px;
-  border-radius:4px 4px ;
+  height:20px;
+  border-radius:4px 4px;
+  outline:none;
+  
 }
 
