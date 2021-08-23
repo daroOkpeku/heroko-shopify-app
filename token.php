@@ -48,6 +48,7 @@ if (hash_equals($hmac, $computed_hmac)) {
 	$access_token = $result['access_token'];
 	// echo json_encode($access_token);
 	// Show the access token (don't do this in production!)
+	$api_key = "2fc22670e98abe4f39bc94fbac789463";
 	$link = "https://$api_key:$access_token@blinginglight.myshopify.com/admin/api/2021-04/locations.json";
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_URL, $link);
@@ -59,7 +60,7 @@ if (hash_equals($hmac, $computed_hmac)) {
 	  $Owner = [];
 	  $Owner_name = '';
 	  $Owner_address1 ='';
-	  $Owner_phone = '0'.'';
+	  $Owner_phone = '';
 	
 	  foreach($food as $food_list){
 		foreach($food_list as $food_data){
