@@ -58,9 +58,9 @@ if (hash_equals($hmac, $computed_hmac)) {
 	 curl_close($ch); 
 	  $food  = json_decode($feed, true);
 	  $Owner = [];
-	  $Owner_name = '';
-	  $Owner_address1 ='';
-	  $Owner_phone = '';
+// 	  $Owner_name = '';
+// 	  $Owner_address1 ='';
+// 	  $Owner_phone = '';
 	
 	  foreach($food as $food_list){
 		foreach($food_list as $food_data){
@@ -73,10 +73,11 @@ if (hash_equals($hmac, $computed_hmac)) {
 	  foreach($Owner as $Owner_list){
 	   $Owner_name = $Owner_list['name'];
 	  $Owner_address1 = $Owner_list['address1'];
-	  $Owner_phone = substr($Owner_list['phone'],  4);
+	  $Owner_phone = '0'.substr($Owner_list['phone'],  4);
+     $sql = "REPLACE INTO shopity (shop_url, access_token, update_time, name, address, phone ) values('".$params['shop']."', '$access_token', NOW(), '$Owner_name', '$Owner_address1', '$Owner_phone' )";
 	  
 	  }
-	$sql = "REPLACE INTO shopity (shop_url, access_token, update_time, name, address, phone ) values('".$params['shop']."', '$access_token', NOW(), '$Owner_name', '$Owner_address1', '$Owner_phone' )";
+	
 	if(mysqli_query($conn, $sql)){
         header("Location:https://".$params['shop']."/admin/apps/delly");
 		exit();
