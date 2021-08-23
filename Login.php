@@ -51,7 +51,7 @@ $link = $_REQUEST['store'];
       $num = mysqli_num_rows($query_link);
       list("ResponseMessage" => $ResponseMessage,'Email'=>$Email, 'Name'=>$Name, 'PhoneNumber'=>$PhoneNumber, 'CustomerAuth'=>$CustomerAuth, 'CustomerID'=>$CustomerID) = $joker;
       if($num == 0){
-        $zoom = "please insert the correct shopify store url";
+         $zoom =   array('ans'=>"please insert the correct shopify store url");
         echo json_encode($zoom);
       }else{
      $fetch_all = mysqli_fetch_assoc($query_link);
