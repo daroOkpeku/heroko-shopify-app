@@ -38,6 +38,7 @@ curl_close($curl);
 
 foreach($jack as $key => $jack_data){
    foreach($jack_data as $item){
+	     $date = $item['created_at'];
 	  // echo json_encode($item['order_status_url']);
 	 $address1  =  $item['customer']['default_address']['address1'];
 	 $city  =  $item['customer']['default_address']['city'];
@@ -58,7 +59,7 @@ foreach($jack as $key => $jack_data){
 			 $price = $item_list['price_set']['presentment_money']['amount'];
 			         $product_name = $item_list['title'];
 					 $sku = $item_list['sku'];
-			$arr = array('line_id'=>$id,'firstname'=>$first_name, 'lastname'=>$last_name, 'phone'=>$phone, 'email'=>$email, 'order_id'=>$order_id, 'quantity'=>$quantity, 'price'=>$price, 'productname'=>$product_name, 'sku'=>$sku, 'product_id'=>$product_id, 'address'=>$address1, 'city'=>$city, 'province'=>$province, 'vendor'=>$vendor);
+			$arr = array('line_id'=>$id,'firstname'=>$first_name, 'lastname'=>$last_name, 'phone'=>$phone, 'email'=>$email, 'order_id'=>$order_id, 'quantity'=>$quantity, 'price'=>$price, 'productname'=>$product_name, 'sku'=>$sku, 'product_id'=>$product_id, 'address'=>$address1, 'city'=>$city, 'province'=>$province, 'vendor'=>$vendor,  'date'=>$date);
 			array_push($total, $arr);
     
 		  }
@@ -78,7 +79,7 @@ for($i =0; $i<count($total); $i++){
     if($num_in > 0){
     //  return false;
 	}else{
-		$sql_send = "INSERT INTO rate(firstname, lastname, phone, email, orderid, quantity, amount, product, sku, line_id, product_id, address, city,  vendor) values( '".$total[$i]['firstname']."', '".$total[$i]['lastname']."', '".$total[$i]['phone']."', '".$total[$i]['email']."', '".$total[$i]['order_id']."', '".$total[$i]['quantity']."', '".$total[$i]['price']."', '".$total[$i]['productname']."', '".$total[$i]['sku']."', '".$total[$i]['line_id']."', '".$total[$i]['product_id']."', '".$total[$i]['address']."', '".$total[$i]['city']."',  '".$total[$i]['vendor']."')";
+		$sql_send = "INSERT INTO rate(firstname, lastname, phone, email, orderid, quantity, amount, product, sku, line_id, product_id, address, city,  vendor, created_date) values( '".$total[$i]['firstname']."', '".$total[$i]['lastname']."', '".$total[$i]['phone']."', '".$total[$i]['email']."', '".$total[$i]['order_id']."', '".$total[$i]['quantity']."', '".$total[$i]['price']."', '".$total[$i]['productname']."', '".$total[$i]['sku']."', '".$total[$i]['line_id']."', '".$total[$i]['product_id']."', '".$total[$i]['address']."', '".$total[$i]['city']."',  '".$total[$i]['vendor']."', '".$total[$i]['date']."')";
 		 $query = mysqli_query($conn, $sql_send);
 	}
 }
