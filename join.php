@@ -59,6 +59,7 @@
            <th>PRODUCT NAME</th>
            <th>PRODUCT CODE</th>
            <th>Quantity</th>
+           <th>created date</th>
            </tr>
            </thead>
            <tbody>
@@ -155,7 +156,7 @@ async function delly() {
          
 
        let jamb = drama.map((one)=>{
-            let{id, firstname, lastname, line_id, product, quantity, amount, product_id} = one 
+            let{id, firstname, lastname, line_id, product, quantity, amount, product_id, created_date} = one 
             if(quantity == 0){
               return `
             <tr>
@@ -166,6 +167,7 @@ async function delly() {
             </td>
              <td>${product_id}</td>
              <td>${quantity}</td>
+             <td>${created_date.substring(0,created_date.length-15)}</td>
            </tr>
 
          <hr/>`;
@@ -186,6 +188,7 @@ async function delly() {
             </td>
              <td>${product_id}</td>
              <td>${quantity}</td>
+             <td>${created_date.substring(0,created_date.length-15)}</td>
            </tr>
 
          <hr/>`;
