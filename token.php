@@ -49,8 +49,7 @@ if (hash_equals($hmac, $computed_hmac)) {
 	// echo json_encode($access_token);
 	// Show the access token (don't do this in production!)
 	
-   $sql = "REPLACE INTO shopity (shop_url, access_token,  owner_name, owner_address, phone, update_time) values('".$params['shop']."', '$access_token', '$Owner_name', '$Owner_address1', '$Owner_phone', NOW() )";
-	
+   $sql = "REPLACE INTO shopity (shop_url, access_token,  owner_name, owner_address, phone, update_time) values('".$params['shop']."', '$access_token', '$Owner_name', '$Owner_address1', '$Owner_phone', NOW() )";	
 	if(mysqli_query($conn, $sql)){
         header("Location:https://".$params['shop']."/admin/apps/delly");
 		exit();
