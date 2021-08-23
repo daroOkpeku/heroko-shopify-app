@@ -45,6 +45,7 @@ $link = $_REQUEST['store'];
     
     if($joker['ResponseCode'] == '400' || $joker['ResponseCode'] == '101'){
       $output .=  $joker['ResponseMessage'];
+       echo json_encode($joker);
     }else{
       $sql = "SELECT * FROM shopity WHERE shop_url='$link'";
       $query_link = mysqli_query($conn, $sql);
