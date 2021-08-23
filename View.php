@@ -53,7 +53,7 @@ let password = document.getElementById("password")
 let email = document.getElementById("email")
 let store = document.getElementById("store")
 let all = document.getElementById('btn');
-
+let error = document.getElementById("err")
 all.addEventListener("click", function(e){
   e.preventDefault();
   
@@ -72,14 +72,22 @@ let formData = new FormData();
                 //   console.log(Response)
 
             }).then(res => {
-                 console.log(res)
+              
+               if(res.ans){
+                  error.innerHTML = `${res.ans}`;
+                  error.style.color =`red`
+                  error.style.padding = `1 rem`
+                  error.style.border =`1px solid red`
+                 }
                 let oneDay = new Date().getDate();
                 let some =  {...res, time:`${oneDay}`};
                 
-               
                 let {ResponseCode, ResponseMessage, Reference, shop} = res;
                        if(ResponseCode == '101' ||  ResponseCode =='400'){
-                             
+                             error.innerHTML = `${ResponseMessage}`;
+                             error.style.color =`red`
+                             error.style.padding = `1 rem`
+                              error.style.border =`1px solid red`
                           }else if (ResponseCode == '100'){
                             localStorage.setItem('Login',JSON.stringify(some))
                             window.location.href='index.php?auth='+res.CustomerAuth+'&ID='+res.CustomerID+'&shop='+res.shop;
