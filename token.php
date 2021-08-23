@@ -48,7 +48,34 @@ if (hash_equals($hmac, $computed_hmac)) {
 	$access_token = $result['access_token'];
 	// echo json_encode($access_token);
 	// Show the access token (don't do this in production!)
-	$sql = "REPLACE INTO shopity (shop_url, access_token, update_time) values('".$params['shop']."', '$access_token', NOW())";
+	$link = "https://$api_key:$access_token@blinginglight.myshopify.com/admin/api/2021-04/locations.json";
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $link);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json"));
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	$feed = curl_exec($ch);
+	 curl_close($ch); 
+	  $food  = json_decode($feed, true);
+	  $Owner = [];
+	  $Owner_name = '';
+	  $Owner_address1 ='';
+	  $Owner_phone = '0'.'';
+	
+	  foreach($food as $food_list){
+		foreach($food_list as $food_data){
+		 array_push($Owner, $food_data);
+		} 
+	   
+	  }
+	 
+	
+	  foreach($Owner as $Owner_list){
+	   $Owner_name = $Owner_list['name'];
+	  $Owner_address1 = $Owner_list['address1'];
+	  $Owner_phone = substr($Owner_list['phone'],  4);
+	  
+	  }
+	$sql = "REPLACE INTO shopity (shop_url, access_token, update_time, name, address, phone ) values('".$params['shop']."', '$access_token', NOW(), '$Owner_name', '$Owner_address1', '$Owner_phone' )";
 	if(mysqli_query($conn, $sql)){
         header("Location:https://".$params['shop']."/admin/apps/delly");
 		exit();
