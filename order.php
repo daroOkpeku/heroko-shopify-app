@@ -115,15 +115,20 @@ orderStorage?window.location.href=data:window.location.href='View.php';
             </thead>
               <tbody>
               </tbody>
-         <tfoot></tfoot>
       </table>
-
+<section class="sunny"> 
+       <button class="previous" data-btn="previous">previous</button>
+        <div class="in"></div>
+       <button class="next" data-btn="next">next</button>
+      </section>
   </div>
 </body>
 <script>
 let pages = document.querySelector(".pages");
 let table = document.querySelector("tbody");
-let search = document.querySelector('.both input')
+ let sunny = document.querySelector(".sunny");
+let filterBtn = document.querySelector(".both button")
+let foot = document.querySelector(".in");
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
  let customerId = params.id;
@@ -154,26 +159,13 @@ async function delly(){
     let data = await fetch('./apicode/delly.php');
     let mega = await data.json();
     let fetchAll = mega.filter(item=>item.store == shop);
-//     fetchAll.map(item=>{
-//         let{line_id, dellymanid, Reference, OrderStatus, product, update_time} = item;
-//         let good = JSON.parse(product);
-//         //productName, amount
-//         table.innerHTML += `
-//               <tr class="border_bottom">
-//               <td>${line_id}</td>
-//               <td><p class="text-xs">${good.map(item=>item.productName+' x'+item.amount+'Qty'+'<br/>')}</p></td>
-//               <td>${Reference}</td>
-//               <td>${OrderStatus}</td>
-//               <td>${update_time}</td>
-//               </tr>
-//         `;
-//     })
- search.addEventListener('keyup', function(e){
-    let input = e.target.value
-    if(input){
-     let change = fetchAll.filter(one=>one.Reference.toLowerCase() == input.toLowerCase())
-     var cool = change.map(item=>{
-       let{line_id, dellymanid, Reference, OrderStatus, product, update_time} = item;
+
+    filterBtn.addEventListener("click", (e)=>{
+ let input = search.value;
+  if(input.length > 0){
+    let change = fetchAll.filter(one=>one.Reference.toLowerCase() == input.toLowerCase())
+ var cool = change.map(item=>{
+        let{line_id, dellymanid, Reference, OrderStatus, product} = item;
         let good = JSON.parse(product);
         //productName, amount
            return `<tr class="border_bottom">
@@ -181,41 +173,14 @@ async function delly(){
               <td><p >${good.map(item=>item.productName+' x'+item.amount+'Qty'+'<br/>')}</p></td>
               <td>${Reference}</td>
               <td>${OrderStatus}</td>
-              <td>${update_time}</td>
               </tr> `;  
               
     })
     table.innerHTML = cool.join(' ')
-     }else{
-
-     var current_page = 1;
-    let all_rows = 4;
-    function instruction(table, fetchAll, current_page, all_rows){
-    
-     current_page--;
+  }
  
-     let start = all_rows * current_page;
-     let end = start + all_rows;
-     let pagina = fetchAll.slice(start, end);
-    
-     for(var i =0; i < pagina.length; i++ ){
-      var product = JSON.parse(pagina[i]['product']);
-          table.innerHTML += `<tr class="border_bottom">
-              <td>${pagina[i]['line_id']}</td>
-              <td><p >${product.map(item=>item.productName+' x'+item.amount+'Qty'+'<br/>')}</p></td>
-               <td>${pagina[i]['Reference']}</td>
-               <td>${pagina[i]['OrderStatus']}</td>
-                <td>${pagina[i]['update_time']}</td>
-               </tr> `;
-     }
-    
-    }
-instruction(table, fetchAll, current_page, all_rows)
-     
-     
-    }
 
-   })
+})
  
  
  
@@ -251,15 +216,14 @@ delly();
     
     }
 
-   let foot = document.querySelector("tfoot");
+
     function setUp(table, fetchAll, all_rows){
       
       let page = Math.ceil(fetchAll.length / all_rows);
       
       for(var f = 1; f < page + 1; f++){
-        current_page = 1
-         foot.innerHTML +=`<button type="button" data-id="${f}"class="click">${f}</button>`;
-    
+          foot.innerHTML += `<button type="button" data-id="${f}"class="click">${f}</button>`;
+         
      
        }
        let click = document.querySelector("tfoot");
