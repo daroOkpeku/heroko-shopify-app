@@ -95,7 +95,7 @@ orderStorage?window.location.href=data:window.location.href='View.php';
     <section>
  <section class="both">
   <h2> View orders</h2>
-   <span> search <input type="text" class="search"  placeholder="Dellyman orderId or Date"/> </span>
+    <span> search <input type="text" class="search"  placeholder="Dellyman orderId or Date"/><button type="button">filter</button> </span>
    </section>
   <select class="pages" >
     <option>Page</option>
