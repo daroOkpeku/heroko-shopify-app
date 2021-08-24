@@ -70,7 +70,7 @@ $link = $_REQUEST['store'];
       $name = $joker['Name'];
      $email = $joker['Email'];
 
-       $sql_o = "SELECT * FROM shopity WHERE owner_name='$name' AND phone='$phone' ";
+       $sql_o = "SELECT * FROM shopity WHERE owner_name='$name' AND shop_url='$link' AND owner_address='$email' ";
        $query_o = mysqli_query($conn, $sql_o);
          $fetch_o = mysqli_fetch_assoc($query_o);
          if(isset($fetch_o)){
