@@ -47,18 +47,44 @@ $link = $_REQUEST['store'];
       $output .=  $joker['ResponseMessage'];
        echo json_encode($joker);
     }else{
-      $sql = "SELECT * FROM shopity WHERE shop_url='$link'";
+         $sql = "SELECT * FROM shopity WHERE shop_url='$link'";
       $query_link = mysqli_query($conn, $sql);
       $num = mysqli_num_rows($query_link);
       list("ResponseMessage" => $ResponseMessage,'Email'=>$Email, 'Name'=>$Name, 'PhoneNumber'=>$PhoneNumber, 'CustomerAuth'=>$CustomerAuth, 'CustomerID'=>$CustomerID) = $joker;
       if($num == 0){
-         $zoom =   array('ans'=>"please insert the correct shopify store url");
+        $zoom =   array('ans'=>"please insert the correct shopify store url");
         echo json_encode($zoom);
       }else{
      $fetch_all = mysqli_fetch_assoc($query_link);
+     $phone = $joker['PhoneNumber'];
+     $name = $joker['Name'];
+    $email = $joker['Email'];
+     if(empty($fetch_all['owner_name']) && empty($fetch_all['owner_address'])  && empty($fetch_all['phone'])){
    
-     $joker['shop'] =$fetch_all['shop_url'];
-     echo json_encode($joker);
-      }      
+    
+      echo json_encode($link);
+       $sql_up = "UPDATE shopity set owner_name='$name',  owner_address='$email', phone='$phone' WHERE shop_url='$link' ";
+       $query =  mysqli_query($conn, $sql_up);
+     }else if(!empty($fetch_all['owner_name']) && !empty($fetch_all['owner_address'])  && !empty($fetch_all['phone'])){
+      $phone = $joker['PhoneNumber'];
+      $name = $joker['Name'];
+     $email = $joker['Email'];
+
+       $sql_o = "SELECT * FROM shopity WHERE owner_name='$name' AND phone='$phone' ";
+       $query_o = mysqli_query($conn, $sql_o);
+         $fetch_o = mysqli_fetch_assoc($query_o);
+         if(isset($fetch_o)){
+          $joker['shop'] = $fetch_o['shop_url'];
+          echo json_encode($joker); 
+         }else{
+           echo json_encode(array('ans'=>'please insert the corrert values'));
+         }
+        
+       
+     }
+   
+  
+      }
+     
     }
 ?>
