@@ -117,9 +117,7 @@ orderStorage?window.location.href=data:window.location.href='View.php';
               </tbody>
       </table>
 <section class="sunny"> 
-       <button class="previous" data-btn="previous">previous</button>
         <div class="in"></div>
-       <button class="next" data-btn="next">next</button>
       </section>
   </div>
 </body>
