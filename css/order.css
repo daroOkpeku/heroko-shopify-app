@@ -73,4 +73,21 @@ table th{
   outline:none;
   
 }
+.both button{
+  height:25px;
+  border-radius:2px 2px;
+  background-color:#9D2143;
+  color:white;
+  outline: none;
+  border: none;
+  transition:ease-in-out 0.5s;
+}
+.both button:hover{
+  background-color:white;
+  color: #9D2143; 
+}
+.sunny{
+  width:300px;
+  margin: auto;
+}
 
