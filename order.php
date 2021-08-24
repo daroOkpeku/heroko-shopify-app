@@ -128,7 +128,6 @@ let pages = document.querySelector(".pages");
 let table = document.querySelector("tbody");
  let sunny = document.querySelector(".sunny");
 let filterBtn = document.querySelector(".both button")
-let foot = document.querySelector(".in");
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
  let customerId = params.id;
@@ -159,7 +158,7 @@ async function delly(){
     let data = await fetch('./apicode/delly.php');
     let mega = await data.json();
     let fetchAll = mega.filter(item=>item.store == shop);
-
+       
     filterBtn.addEventListener("click", (e)=>{
  let input = search.value;
   if(input.length > 0){
@@ -186,16 +185,16 @@ async function delly(){
  
  
  
- 
- setUp(table, fetchAll, all_rows);
- instruction(table, fetchAll, current_page, all_rows);  
+setUp(table, fetchAll, all_rows)
+instruction(table, fetchAll, current_page, all_rows);  
 }
 delly();
  
- var current_page = 1;
- let all_rows = 4;
- 
- function instruction(table, fetchAll, current_page, all_rows){
+
+var current_page = 1;
+    let all_rows = 4;
+    let forBtn = 1;
+    function instruction(table, fetchAll, current_page, all_rows){
     
      current_page--;
  
@@ -210,23 +209,23 @@ delly();
               <td><p >${product.map(item=>item.productName+' x'+item.amount+'Qty'+'<br/>')}</p></td>
                <td>${pagina[i]['Reference']}</td>
                <td>${pagina[i]['OrderStatus']}</td>
-                <td>${pagina[i]['update_time']}</td>
                </tr> `;
      }
     
     }
 
 
+     let foot = document.querySelector(".in");
     function setUp(table, fetchAll, all_rows){
       
       let page = Math.ceil(fetchAll.length / all_rows);
       
       for(var f = 1; f < page + 1; f++){
-          foot.innerHTML += `<button type="button" data-id="${f}"class="click">${f}</button>`;
-         
-     
+         foot.innerHTML += `<button type="button" data-id="${f}"class="click">${f}</button>`;
+        
+
        }
-       let click = document.querySelector("tfoot");
+       let click = document.querySelector(".in");
     click.addEventListener("click", function(e){
        let num = parseInt(e.target.dataset.id)
            current_page = num
