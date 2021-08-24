@@ -193,7 +193,7 @@ delly();
  
 
 var current_page = 1;
-    let all_rows = 4;
+    let all_rows = 10;
     let forBtn = 1;
     function instruction(table, fetchAll, current_page, all_rows){
     
@@ -210,6 +210,8 @@ var current_page = 1;
               <td><p >${product.map(item=>item.productName+' x'+item.amount+'Qty'+'<br/>')}</p></td>
                <td>${pagina[i]['Reference']}</td>
                <td>${pagina[i]['OrderStatus']}</td>
+               <td>${pagina[i]['OrderStatus']}</td>
+               <td>${pagina[i]['update_time']}</td>
                </tr> `;
      }
     
