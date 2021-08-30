@@ -40,9 +40,9 @@ $feed = curl_exec($ch);
   $food  = json_decode($feed, true);
  
   $Owner = [];
-  $Owner_name = '';
-  $Owner_address1 ='';
-  $Owner_phone = '';
+  $Owner_name=" ";
+  $Owner_address1='';
+  $Owner_phone='';
 
   foreach($food as $food_list){
     foreach($food_list as $food_data){
