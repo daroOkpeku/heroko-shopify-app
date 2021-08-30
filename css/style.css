@@ -423,16 +423,16 @@ p {
   border-radius: 10px 10px;
   transition: ease-in-out 0.5s;
 }
-
 .second {
-  height: 29px;
-  border-radius: 5px 5px;
-  background: #9D2143;
-  color: rgba(236, 231, 231, 0.904);
-  padding: 10px;
-  border: none;
-  outline: none;
-  transition: all 0.2s;
+    height: 35px;
+    width: 50px;
+    border-radius: 5px 5px;
+    background: #9D2143;
+    color: rgba(236, 231, 231, 0.904);
+    padding: 10px;
+    border: none;
+    outline: none;
+    transition: all 0.2s;
 }
 
 .boxTwo button {
@@ -537,15 +537,15 @@ p {
 }
 
 .second {
-  height: 30px;
-  width: 44px;
-  border-radius: 5px 5px;
-  background: #9D2143;
-  color: rgba(236, 231, 231, 0.904);
-  padding: 10px;
-  border: none;
-  outline: none;
-  transition: all 0.2s;
+    height: 35px;
+    width: 50px;
+    border-radius: 5px 5px;
+    background: #9D2143;
+    color: rgba(236, 231, 231, 0.904);
+    padding: 10px;
+    border: none;
+    outline: none;
+    transition: all 0.2s;
 }
 
 .on {
