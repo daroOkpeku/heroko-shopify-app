@@ -116,8 +116,21 @@ orderStorage?window.location.href=data:window.location.href='View.php';
               <tbody>
               </tbody>
       </table>
-<section class="sunny"> 
-        <div class="in"></div>
+ <section class="sunny"> 
+       <button class="previous" data-btn="previous">previous</button>
+        <!-- <div class="in"></div> -->
+        <div class="slider">
+          <!-- <div class="slide">
+           1
+          </div>
+          <div class="slide">
+           2
+          </div>
+          <div class="slide">
+         3
+          </div> -->
+        </div>
+       <button class="next" data-btn="next">next</button>
       </section>
   </div>
 </body>
@@ -216,17 +229,53 @@ var current_page = 1;
     }
 
 
-     let foot = document.querySelector(".in");
+     let foot = document.querySelector(".slider");
     function setUp(table, fetchAll, all_rows){
       
       let page = Math.ceil(fetchAll.length / all_rows);
       
       for(var f = 1; f < page + 1; f++){
-         foot.innerHTML += `<button type="button" data-id="${f}"class="click">${f}</button>`;
+         foot.innerHTML += `<div class="slide"><button type="button" data-id="${f}"class="click">${f}</button></div>`
+                  let nextBtn = document.querySelector(".next");
+let prevBtn = document.querySelector(".previous");
+let slide = document.querySelectorAll(".slide");
+let counter = 0;
+
+slide.forEach(function (one, index) {
+  one.style.left = `${index * 100}%`;
+});
+
+nextBtn.addEventListener("click", function () {
+  counter++;
+  move();
+});
+prevBtn.addEventListener("click", function () {
+  counter--;
+  move();
+});
+
+/*setInterval(function me() {
+  move();
+
+  counter++;
+}, 2000);*/
+
+function move() {
+  if (counter > slide.length - 1) {
+    counter = 0;
+  }
+  if (counter < 0) {
+    counter = slide.length - 1;
+  }
+  slide.forEach(function (one) {
+    one.style.transform = `translateX(${-counter * 100}%)`;
+    one.style.transition = "transform  ease-in 0.5s";
+  });
+};
         
 
        }
-       let click = document.querySelector(".in");
+       let click = document.querySelector(".slider");
     click.addEventListener("click", function(e){
        let num = parseInt(e.target.dataset.id)
            current_page = num
