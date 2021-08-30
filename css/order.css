@@ -90,6 +90,14 @@ table th{
   width:300px;
   margin: auto;
 }
+.sunny button{
+ background-color:#9D2143;
+  color:white;
+}
+.sunny button:hover{
+    background-color:white;
+    color: #9D2143; 
+}
 
 .slider {
   position: relative;
