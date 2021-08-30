@@ -354,6 +354,36 @@ p {
   margin-top: 0;
   margin-bottom: 1rem;
 }
+    .within {
+    border-radius: 3px 3px 3px 3px;
+    padding: 2rem;
+    width: 63%;
+    background: white;
+    display: grid;
+    place-items: center;
+}
+
+.within h2 {
+  padding: 0rem;
+  font-size: 18px;
+}
+
+.within aside {
+  display: flex;
+  padding: 1rem 0;
+}
+
+.within button {
+  width: 89px;
+  height: 25px;
+  border: none;
+  outline: none;
+  background-color: #9D2143;
+  color: white;
+  border-radius: 3px 3px;
+  transition: all 0.2s;
+  /* display: flex; */
+}
 }
 
 
@@ -481,6 +511,7 @@ p {
   transition: all 0.2s;
   /* display: flex; */
 }
+    
 }
 @media screen and (min-width: 298px) {
   * {
@@ -595,6 +626,36 @@ p {
   border: none;
   background-color: #9d214262;
   color: white;
+}
+    .within {
+    border-radius: 3px 3px 3px 3px;
+    padding: 2rem;
+    width: 63%;
+    background: white;
+    display: grid;
+    place-items: center;
+}
+
+.within h2 {
+  padding: 0rem;
+  font-size: 18px;
+}
+
+.within aside {
+  display: flex;
+  padding: 1rem 0;
+}
+
+.within button {
+  width: 89px;
+  height: 25px;
+  border: none;
+  outline: none;
+  background-color: #9D2143;
+  color: white;
+  border-radius: 3px 3px;
+  transition: all 0.2s;
+  /* display: flex; */
 }
 
 }
