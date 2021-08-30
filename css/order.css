@@ -191,3 +191,100 @@ p {
   margin-bottom: 1rem;
 }
 }
+
+
+@media screen and (min-width: 360px) {
+
+  .main h3 {
+    font-size: 9px;
+    color: #141314ea;
+    font-weight: 500;
+    font-family: 'Inter';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px;
+}
+
+.above select {
+  width: 50px;
+  height: 35px;
+  border-radius: 4px 4px 4px 4px;
+  outline: none;
+}
+
+.order {
+  z-index: 5;
+  position: absolute;
+  right: 2%;
+  color: #9D2143;
+  width: 46px;
+  height: 16px;
+  outline: none;
+  border: none;
+  background: none;
+}
+
+.h4, h4 {
+  font-size: -0.5rem;
+}
+p {
+  font-size: 8px;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+.magic {
+  position: relative;
+  width: 34px;
+  height: 19px;
+  border-radius: 10px 10px;
+  outline: none;
+  border: 1px solid #9D2143;
+  background: rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  font-size: large;
+  color: #9D2143;
+  justify-content: space-between;
+}
+
+.switch {
+  position: absolute;
+  height: 97%;
+  border-radius: 50px;
+  box-shadow: 2px 4px 6px rgb(0 0 0 / 50%);
+  min-width: 17px;
+  left: 0;
+  background-color: #9D2143;
+  border-radius: 10px 10px;
+  transition: ease-in-out 0.5s;
+}
+
+.second {
+  height: 29px;
+  border-radius: 5px 5px;
+  background: #9D2143;
+  color: rgba(236, 231, 231, 0.904);
+  padding: 10px;
+  border: none;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.boxTwo button {
+  height: 41px;
+  border-radius: 5px 5px;
+  width: 46%;
+  padding: 10px;
+  outline: none;
+  border: none;
+  background-color: #9d214262;
+  color: white;
+}
+.on {
+  height: 46px;
+  border-radius: 5px 5px;
+  width: 55%;
+  padding: 10px;
+}
+}
