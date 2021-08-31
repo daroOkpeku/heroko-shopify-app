@@ -103,6 +103,7 @@ orderStorage?window.location.href=data:window.location.href='View.php';
      <option>Login</option>
    </select>
    </section>
+ <div class="core">
     <table >
           <thead>
               <tr>
@@ -116,6 +117,7 @@ orderStorage?window.location.href=data:window.location.href='View.php';
               <tbody>
               </tbody>
       </table>
+  </div>
  <section class="sunny"> 
        <button class="previous" data-btn="previous">previous</button>
         <!-- <div class="in"></div> -->
