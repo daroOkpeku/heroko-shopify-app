@@ -444,7 +444,18 @@ html {
 
 
 @media (max-width: 360px) {
-
+  * {
+    padding: 0px;
+    box-sizing: border-box;
+    margin: 0px;
+    font-size: 8px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 400;
+}
+.inbox {
+  padding: 0.5rem 0;
+  overflow-x: scroll;
+}
 .above select {
   width: 56px;
   height: 41px;
