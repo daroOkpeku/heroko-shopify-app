@@ -484,4 +484,7 @@ html {
   padding: 10px;
   font-size: 10px;
 }
+    .slider button{
+  width: 24px;
+}
 }
