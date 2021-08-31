@@ -160,3 +160,18 @@ table th{
 
 }
 
+
+@media (max-width: 360px) {
+  .pages {
+    width: 89px;
+    height: 46px;
+    border-radius: 4px 4px 4px 4px;
+    outline: none;
+}
+  .both input {
+    width: 104px;
+    height: 20px;
+    border-radius: 4px 4px;
+    outline: none;
+}
+}
