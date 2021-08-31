@@ -440,3 +440,37 @@ html {
 }
 
 }
+
+
+
+@media (max-width: 360px) {
+
+.above select {
+  width: 56px;
+  height: 41px;
+  border-radius: 4px 4px 4px 4px;
+  outline: none;
+}
+
+.order {
+  z-index: 5;
+  position: absolute;
+  right: -2%;
+  color: #9D2143;
+  width: 84px;
+  height: 40px;
+  outline: none;
+  border: none;
+  background: none;
+}
+.main h3 {
+  color: #141314ea;
+  font-weight: 500;
+  font-family: 'Inter';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  font-size: 10px;
+}
+}
