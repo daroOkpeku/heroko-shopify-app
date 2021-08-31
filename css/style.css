@@ -317,9 +317,6 @@ html {
     }
     
 
-
-
-
     /* Safari */
     @-webkit-keyframes spin {
       0% { -webkit-transform: rotate(0deg); }
@@ -330,3 +327,116 @@ html {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
+
+
+@media (max-width: 599px) {
+
+  * {
+    padding: 0px;
+    box-sizing: border-box;
+    margin: 0px;
+    font-size: 11px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 400;
+}
+
+
+  .main h3 {
+    color: #141314ea;
+    font-weight: 500;
+    font-family: 'Inter';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    font-size: 12px;
+}
+
+.above select {
+  width: 75px;
+  height: 45px;
+  border-radius: 4px 4px 4px 4px;
+  outline: none;
+}
+
+.order {
+  z-index: 5;
+  position: absolute;
+  right: 1%;
+  color: #9D2143;
+  width: 84px;
+  height: 40px;
+  outline: none;
+  border: none;
+  background: none;
+}
+
+.magic {
+  position: relative;
+  width: 40px;
+  height: 20px;
+  border-radius: 10px 10px;
+  outline: none;
+  border: 1px solid #9D2143;
+  background: rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  font-size: large;
+  color: #9D2143;
+  justify-content: space-between;
+}
+
+.switch {
+  position: absolute;
+  height: 100%;
+  border-radius: 50px;
+  box-shadow: 2px 4px 6px rgb(0 0 0 / 50%);
+  min-width: 18px;
+  left: 0;
+  background-color: #9D2143;
+  border-radius: 10px 10px;
+  transition: ease-in-out 0.5s;
+}
+
+.second {
+  height: 42px;
+  border-radius: 5px 5px;
+  background: #9D2143;
+  color: rgba(236, 231, 231, 0.904);
+  padding: 10px;
+  border: none;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.within {
+  border-radius: 3px 3px 3px 3px;
+  padding: 2rem;
+  width: 73%;
+  background: white;
+  display: grid;
+  place-items: center;
+}
+
+.within aside {
+  display: flex;
+  padding: 1rem 0;
+}
+.within button {
+  width: 81px;
+  height: 23px;
+  border: none;
+  outline: none;
+  background-color: #9D2143;
+  color: white;
+  border-radius: 3px 3px;
+  transition: all 0.2s;
+  margin: 4px;
+}
+
+.within h2 {
+  font-size: 18px;
+  padding: 2.5rem;
+}
+
+}
