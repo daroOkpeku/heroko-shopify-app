@@ -183,7 +183,7 @@ async function delly() {
             </button></p>
         <p> <input type="number" id="${product_id}" class="qty"  data-number="${product}"   placeholder="Quantity" />
         <p class="err"></p>
-         <button type="button" class="second"  name="${product_id}">Update</button></p>
+         <button type="button" class="second" id="${quantity}" name="${product_id}">Update</button></p>
         </div>
             </td>
              <td>${product_id}</td>
@@ -253,6 +253,7 @@ async function delly() {
 
           let second = one.querySelector('.second');
            second.addEventListener("click", function (e) {
+               let singleElement = second.getAttribute("id");
             e.preventDefault();
                let con = document.querySelectorAll('.qty');
 
@@ -297,6 +298,16 @@ async function delly() {
                     err.style.color = `red`
                     input.style.border = "1px solid red";
                     on.setAttribute('disabled', true)
+                }
+             
+              if(input.value > singleElement){
+                  console.log("working")
+                      err.innerText = `quantity(es) ${input.value} is greater than order `
+                    input.style.border = "1px solid red";
+                    on.setAttribute('disabled', true)
+                    err.style.color = `red`;
+                    submit.setAttribute('disabled', true);
+                    submit.style.backgroundColor  =`#9d214262`;
                 }
 
 
