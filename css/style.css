@@ -523,3 +523,36 @@ html {
     margin-top: 25px;
 }
 }
+
+@media (max-width: 355px) {
+
+  * {
+    padding: 0px;
+    box-sizing: border-box;
+    margin: 0px;
+    font-size: 7px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 200;
+}
+
+
+  .above select {
+    width: 58px;
+    height: 41px;
+    border-radius: 4px 4px 4px 4px;
+    outline: none;
+}
+
+  .main h3 {
+    color: #141314ea;
+    font-weight: 500;
+    font-family: 'Inter';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    font-size: 8px;
+}
+
+
+}
